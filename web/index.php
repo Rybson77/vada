@@ -1,14 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Půjčovna filmů</title>
-   <?php
-   require_once("connect.php");
-   ?>
-</head>
-<body>
-   
-</body>
-</html>
+<?php
+$title = "půjčovna filmů";
+include("htmlhead.php");
+if (isset($_GET['action'])){
+   switch($_GET['action']){
+      case "registration":
+         include 'reg-bckend.php';
+         echo("BUDEME SE REGISTROVAT");
+         break;
+      case "login":
+         echo("BUDEME SE LOGINOVAT");
+         include 'log-bckend.php';
+         break;
+      case "logout":
+         echo("BUDEME SE ODHLASOVAT");
+            //include 'logout.php';
+            break;
+      default:
+         include 'site.html';
+   }
+}else{
+   include 'site.html';
+}
+include("htmlfooter.php");
+?>
+
