@@ -38,9 +38,5 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // 5) Vygeneruj CSRF token, pokud ještě neexistuje
-if (empty($_SESSION['csrf_token'])) {
-    // 32 B náhodných bytů → hex string 64 znaků
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
 
 

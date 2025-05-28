@@ -1,7 +1,10 @@
 <?php
+require_once __DIR__ . '/config.php';
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 $title = "Přihlášení";
 require("htmlhead.php");
-require_once __DIR__ . '/config.php';
 ?>
 <h2>Přihlášení</h2>
 <form method="post" id="login" action="index.php?action=login">

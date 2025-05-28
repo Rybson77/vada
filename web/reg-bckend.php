@@ -48,9 +48,22 @@ $stmt = $conn->prepare(
 );
 try {
     $stmt->execute([$email, $hash, $login,
-                    $_POST['name'], $_POST['surname'], $tel]);
+        $_POST['name'], $_POST['surname'], $tel]);
     echo "Registrace úspěšná!";
+    $ok = true;
 } catch (PDOException $e) {
     // v produkci raději loguj do souboru než echo
     echo "Chyba při registraci.";
 }
+
+    if ($ok) {
+        $newUserId = $conn->lastInsertId();
+        $_SESSION['user_id']    = $newUserId;
+        $_SESSION['user_login'] = $login;
+        header('Location: index.php');
+        exit;
+    } else {
+        // 6) Chyba přihlášení
+        $error = 'Neplatné jméno nebo heslo.';
+        require __DIR__ . '/login.php';
+    }
