@@ -4,8 +4,8 @@ if (empty($_SESSION['csrf_token'])) {
     // 32 B náhodných bytů → hex string 64 znaků
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
+include("htmlhead.php");
 $title = "Registration";
-require("htmlhead.php");
 ?>
   <form method="post" id="registrationForm" action="index.php?action=registration">
   <!-- Login: jen písmena/čísla/_ a 3–20 znaků -->
@@ -129,6 +129,6 @@ require("htmlhead.php");
 </script>
 
 <?php
+include("htmlfooter.php");
 print_r($_POST);
-require("htmlfooter.php");
 ?>

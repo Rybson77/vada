@@ -1,19 +1,28 @@
 <?php
 $title = "Půjčovna filmů";
-include("htmlhead.php");
 if (isset($_GET['action'])){
    switch($_GET['action']){
       case "registration":
-         include 'reg-bckend.php';
-         //echo("BUDEME SE REGISTROVAT");
-         break;
+         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require __DIR__ . '/reg-bckend.php';
+         } else {
+            require __DIR__ . '/registration.php';
+         }
+    break;
       case "login":
-         //echo("BUDEME SE LOGINOVAT");
-         include 'log-bckend.php';
-         break;
+         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require __DIR__ . '/log-bckend.php';
+         } else {
+            require __DIR__ . '/login.php';
+         }
+    break;
+      case "dashboard":
+            require __DIR__ . '/dashboard.php';
+
+    break;
       case "logout":
          //echo("BUDEME SE ODHLASOVAT");
-            include 'logout.php';
+            require __DIR__ .'/logout.php';
             break;
       default:
        include 'site.php';
@@ -21,6 +30,5 @@ if (isset($_GET['action'])){
 }else{
    include 'site.php';
 }
-include("htmlfooter.php");
 ?>
 

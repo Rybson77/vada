@@ -1,44 +1,15 @@
 <?php
 require_once __DIR__ . '/config.php';
+include("htmlhead.php");
 ?>
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Půjčovna filmů</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.php" class="logo">🎬 Moje Půjčovna Filmů</a>
-      <nav class="main-nav">
-        <ul>
-          <li><a href="index.php">Domů</a></li>
-          <li><a href="index.php?action=genres">Žánry</a></li>
-          <li><a href="index.php?action=search">Hledat</a></li>
-        </ul>
-      </nav>
-      <div class="auth-links">
-        <?php if (empty($_SESSION['user_id'])): ?>
-          <a href="login.php" class="btn">Přihlášení</a>
-          <a href="registration.php" class="btn btn-primary">Registrace</a>
-        <?php else: ?>
-          <span class="user-name">Vítejte, <?= htmlspecialchars($_SESSION['user_login']) ?></span>
-          <a href="logout.php" class="btn">Odhlásit se</a>
-        <?php endif; ?>
-      </div>
-    </div>
-  </header>
-
+<link rel="stylesheet" href="./styles/main.css">
   <!-- MAIN CONTENT -->
   <div class="container layout">
     <!-- SIDEBAR: ŽÁNRY -->
     <aside class="sidebar">
       <h2>Žánry</h2>
       <ul>
+        <li><a href="index.php?">Vše</a></li>
         <?php
         // Načtení žánrů z DB
         $genres = $conn->query("SELECT id, name FROM genres ORDER BY name")->fetchAll();
@@ -91,12 +62,7 @@ require_once __DIR__ . '/config.php';
       </div>
     </section>
   </div>
+<?php
+include("htmlfooter.php");
+?>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; <?= date('Y') ?> Moje Půjčovna Filmů. Všechna práva vyhrazena.</p>
-    </div>
-  </footer>
-</body>
-</html>

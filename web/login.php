@@ -3,8 +3,8 @@ require_once __DIR__ . '/config.php';
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
+include("htmlhead.php");
 $title = "Přihlášení";
-require("htmlhead.php");
 ?>
 <h2>Přihlášení</h2>
 <form method="post" id="login" action="index.php?action=login">
@@ -15,6 +15,6 @@ require("htmlhead.php");
 <input type="submit" value="Login">
 </form>
 <?php
+include("htmlfooter.php");
 print_r($_POST);
-require("htmlfooter.php");
 ?>
