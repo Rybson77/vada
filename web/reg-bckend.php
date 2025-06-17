@@ -33,8 +33,9 @@ $stmt = $conn->prepare(
 );
 $stmt->execute([$email, $login]);
 if ($stmt->fetchColumn() > 0) {
+    $error="Email nebo login již existuje Zkuste se přihlásit";
     require_once("login.php");
-    die("Email nebo login již existuje Zkuste se přihlásit");
+    exit;
 }
 
 // 5) Hash + insert

@@ -25,6 +25,9 @@ require __DIR__ . '/htmlhead.php';
       <div class="form-actions">
         <button type="submit" class="btn btn-primary">Přihlásit se</button>
       </div>
+      <?php if (!empty($error)):?>
+          <p class="form-error" style="color: #fb6161;margin-top: 1rem;font-size: .9rem;"> <?= htmlspecialchars($error) ?> </p>
+      <?php endif; ?>
       <p class="form-note">Ještě nemáte účet? <a href="index.php?action=registration">Registrace</a></p>
     </form>
   </div>
