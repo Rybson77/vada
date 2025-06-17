@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // 3) Hledáme uživatele (login NEBO email)
     $stmt = $conn->prepare("
-        SELECT id, login, password_hash
+        SELECT id, login, password_hash, role
           FROM users
          WHERE login = :login
             OR email = :email
@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // 5) Uložení do session a přesměrování
         $_SESSION['user_id']    = $user['id'];
         $_SESSION['user_login'] = $user['login'];
+        $_SESSION['role'] = $user['role'];
         header('Location: index.php');
         exit;
     } else {

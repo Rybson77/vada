@@ -8,25 +8,41 @@ if (isset($_GET['action'])){
          } else {
             require __DIR__ . '/registration.php';
          }
-    break;
+      break;
+      
       case "login":
          if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require __DIR__ . '/log-bckend.php';
          } else {
             require __DIR__ . '/login.php';
          }
-    break;
+      break;
+
       case "dashboard":
             require __DIR__ . '/dashboard.php';
+      break;
 
-    break;
+      case "movie":
+         require __DIR__ . '/movie.php';
+      break;
+
+      case "rent":
+         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require __DIR__ . '/rent-bckend.php';
+         } else {
+            include 'site.php';
+         }
+      break;
+
       case "logout":
          //echo("BUDEME SE ODHLASOVAT");
-            require __DIR__ .'/logout.php';
-            break;
+         require __DIR__ .'/logout.php';
+      break;
+
       default:
        include 'site.php';
-} 
+   } 
+
 }else{
    include 'site.php';
 }

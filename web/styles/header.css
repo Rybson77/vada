@@ -1,29 +1,37 @@
-* {
+/* Reset a box sizing */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4f4f9;
   color: #333;
   line-height: 1.6;
 }
 
-.container {
+/* Sticky header s kompaktním provedením */
+.site-header {
+  background: linear-gradient(90deg, #24292e, #2f343a);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 0; /* odstraněno vertikální odsazení */
+}
+.header-inner {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-}
-
-/* Header */
-.site-header {
-  background-color: #24292e;
-  color: #fff;
-  padding: 1rem 0;
-}
-.header-inner {
+  padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,44 +40,76 @@ body {
   font-size: 1.5rem;
   text-decoration: none;
   color: #fff;
+  font-weight: normal;
+  transition: transform 0.2s ease;
+}
+.logo:hover {
+  transform: scale(1.05);
 }
 
+/* Navigace */
 .main-nav ul {
   list-style: none;
   display: flex;
 }
-.main-nav li {
-  margin-left: 1.5rem;
+.main-nav li + li {
+  margin-left: 1.25rem;
 }
 .main-nav a {
+  position: relative;
   text-decoration: none;
   color: #fff;
   font-weight: 500;
+  padding: 0.2rem 0;
+  transition: color 0.3s ease;
+}
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #61dafb;
+  transition: width 0.3s ease, left 0.3s ease;
 }
 .main-nav a:hover {
   color: #61dafb;
 }
+.main-nav a:hover::after {
+  width: 100%;
+  left: 0;
+}
 
+/* Auth-links tlačítka */
 .auth-links .btn {
   text-decoration: none;
-  margin-left: 1rem;
-  padding: 0.5rem 1rem;
+  margin-left: 0.75rem;
+  padding: 0.4rem 0.9rem;
   border: 1px solid #61dafb;
   border-radius: 4px;
   color: #61dafb;
   font-weight: 500;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 .auth-links .btn:hover {
   background: #61dafb;
   color: #24292e;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(97,218,251,0.4);
 }
 .auth-links .btn-primary {
   background: #61dafb;
   color: #24292e;
   border-color: #61dafb;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
-
-.user-name {
-  margin-right: 1rem;
+.auth-links .btn-primary:hover {
+  background: #4bb1e7;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(75,177,231,0.4);
+}.user-name {
+  margin-right: 0.75rem;
   font-style: italic;
 }

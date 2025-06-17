@@ -60,6 +60,7 @@ try {
         $newUserId = $conn->lastInsertId();
         $_SESSION['user_id']    = $newUserId;
         $_SESSION['user_login'] = $login;
+        
         header('Location: index.php');
         exit;
     } else {

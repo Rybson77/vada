@@ -4,6 +4,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="./styles/header.css">
+   <link rel="stylesheet" href="./styles/footer.css">
    <title>
       <?php echo $title;?>
    </title>
@@ -11,8 +12,8 @@
 <body>
   <!-- HEADER -->
   <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.php" class="logo">🎬 Moje Půjčovna Filmů</a>
+    <div class="header-inner">
+      <a href="index.php" class="logo">🎬 Půjčovna Filmů</a>
       <div class="auth-links">
         <?php if (empty($_SESSION['user_id'])): ?>
           <a href="index.php?action=login" class="btn">Přihlášení</a>

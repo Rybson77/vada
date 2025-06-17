@@ -2,7 +2,7 @@
 require_once __DIR__ . '/config.php';
 include("htmlhead.php");
 ?>
-<link rel="stylesheet" href="./styles/main.css">
+<link rel="stylesheet" href="./styles/site.css">
   <!-- MAIN CONTENT -->
   <div class="container layout">
     <!-- SIDEBAR: ŽÁNRY -->
@@ -42,24 +42,28 @@ include("htmlhead.php");
           $stmt->execute(['%' . $_GET['q'] . '%']);
           $movies = $stmt->fetchAll();
       } else {
-          $movies = $conn->query("SELECT * FROM movies ORDER BY created_at DESC LIMIT 12")->fetchAll();
+          $movies = $conn->query("SELECT * FROM movies ORDER BY created_at DESC")->fetchAll();
       }
       ?>
 
       <div class="movie-grid">
         <?php if (empty($movies)): ?>
           <p>Žádné filmy k zobrazení.</p>
-        <?php else:
-          foreach ($movies as $m): ?>
+        <?php else: foreach ($movies as $m): ?>
+          <a href="index.php?action=movie&movie_id=<?=$m['id']?>" class="movie-card-link">
             <div class="movie-card">
               <div class="poster">
-                <img src="posters/<?= $m['id'] ?>.jpg" alt="<?= htmlspecialchars($m['title']) ?>">
+                <img src="posters/<?=$m['id']?>.jpg" alt="<?=htmlspecialchars($m['title'])?>">
               </div>
-              <h3><?= htmlspecialchars($m['title']) ?></h3>
-              <p class="year"><?= htmlspecialchars($m['release_year']) ?></p>
+              <h3><?=htmlspecialchars($m['title'])?></h3>
+              <p class="year"><?=htmlspecialchars($m['release_year'])?></p>
             </div>
+          </a>
         <?php endforeach; endif; ?>
       </div>
+    </section>
+  </div>
+
     </section>
   </div>
 <?php

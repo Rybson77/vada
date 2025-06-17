@@ -1,0 +1,116 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2) Základní flex layout */
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 3) Rezervuj prostor pro header i footer */
+body > .container {
+  flex: 1;
+  display: flex;
+  align-items: center;      /* vystředění vertikálně */
+  justify-content: center;  /* vystředění horizontálně */
+  padding: 1rem;    
+}
+
+
+/* 1) Kontejner dashboardu */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* 2) Profilová karta */
+.profile-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 3em;
+}
+.profile-card p {
+  margin: 0.5rem 0;
+  color: #24292e;
+}
+.profile-card strong {
+  color: #24292e;
+}
+
+/* 3) Nadpisy */
+.container h2,
+.container h3 {
+  color: #24292e;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* 4) Tabulka výpůjček */
+.rentals-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.rentals-table thead {
+  background: #f4f4f9;
+}
+.rentals-table th,
+.rentals-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+  color: #333;
+}
+.rentals-table th {
+  font-weight: 600;
+  color: #24292e;
+}
+.rentals-table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+.rentals-table tbody tr:hover {
+  background: #f1f1f1;
+}
+
+/* 5) Barevné zvýraznění stavu */
+/* Přidej ve svém dashboard.php do <tr> class podle stavu, např. <tr class="status-probiha"> */
+.status-probiha    { background: #e6ffed; } /* světle zelená */
+.status-vraceno    { background: #e8f4ff; } /* světle modrá */
+.status-po-splatnosti { background: #ffecec; } /* světle červená */
+.status-zruseno    { background: #f0f0f0; } /* světle šedá */
+
+/* A též lehce ztuční text ve sloupci Stav */
+.rentals-table td.status {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* 6) Responzivita */
+@media (max-width: 768px) {
+  .rentals-table th,
+  .rentals-table td {
+    padding: 0.5rem;
+  }
+  .profile-card {
+    padding: 1rem;
+  }
+}

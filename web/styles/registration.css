@@ -1,0 +1,142 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2) Základní flex layout */
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 3) Rezervuj prostor pro header i footer */
+body > .container {
+  flex: 1;
+  display: flex;
+  align-items: center;      /* vystředění vertikálně */
+  justify-content: center;  /* vystředění horizontálně */
+  padding: 1rem;    
+}
+
+.container{
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+
+/* 6) Auth-card – bílá karta s drop-shadow */
+.auth-card {
+  width: 100%;
+  background: #fff;
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* Titulek karty */
+.auth-card h2 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+/* 7) Formulář jako dvousloupcový grid */
+.auth-card form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem 1.5rem; /* vertikálně 1rem, horizontálně 1.5rem */
+}
+
+/* Jednotlivé skupiny polí */
+.auth-card .form-group {
+  margin-bottom: 0; /* grid gap řeší mezery */
+  text-align: left;
+}
+.form-group label {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 500;
+}
+.form-group input {
+  width: 100%;
+  padding: .6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Elementy pod formulářem přes oba sloupce */
+.auth-card .form-actions,
+.auth-card .form-note {
+  grid-column: 1 / -1;
+  margin-top: 1rem;
+  text-align: center;
+}
+.form-note {
+  font-size: .9rem;
+}
+.form-note a {
+  color: #61dafb;
+  text-decoration: none;
+}
+.form-note a:hover {
+  text-decoration: underline;
+}
+
+/* 8) Tlačítka – dědí styl z header.css/main.css */
+.btn {
+  text-decoration: none;
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #61dafb;
+  border-radius: 4px;
+  color: #61dafb;
+  font-weight: 500;
+}
+.btn:hover {
+  background: #61dafb;
+  color: #24292e;
+}
+.btn-primary {
+  background: #61dafb;
+  color: #24292e;
+  border-color: #61dafb;
+}
+
+/* 9) Primární tlačítko v auth-card – centrované a se zábleskem */
+.auth-card .btn-primary {
+  justify-self: center;
+  width: auto;
+  padding: 0.5rem 1.25rem;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+.auth-card .btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.3);
+  transition: left 0.5s ease;
+  transform: skewX(-20deg);
+}
+.auth-card .btn-primary:hover::before {
+  left: 200%;
+}
+.auth-card .btn-primary:hover {
+  color: #24292e;
+}

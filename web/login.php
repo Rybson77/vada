@@ -1,20 +1,32 @@
 <?php
 require_once __DIR__ . '/config.php';
+// CSRF token
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
-include("htmlhead.php");
 $title = "Přihlášení";
+require __DIR__ . '/htmlhead.php';
 ?>
-<h2>Přihlášení</h2>
-<form method="post" id="login" action="index.php?action=login">
-<input type="text" id="login" name="login" placeholder="Uživatelské jméno" required><br>
-<input type="password" id="password" name="password" placeholder="Heslo" required><br>
-<input type="hidden" name="csrf_token"
+<link rel="stylesheet" href="./styles/login.css">
+  <div class="container">
+   <div class="auth-card">
+      <h2>Přihlášení</h2>
+      <form method="post" id="loginForm" action="index.php?action=login" class="form-card">
+          <input type="hidden" name="csrf_token"
          value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
-<input type="submit" value="Login">
-</form>
-<?php
-include("htmlfooter.php");
-print_r($_POST);
-?>
+      <div class="form-group">
+        <label for="login">Uživatelské jméno</label>
+        <input type="text" id="login" name="login" placeholder="Uživatelské jméno" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Heslo</label>
+        <input type="password" id="password" name="password" placeholder="Heslo" required>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Přihlásit se</button>
+      </div>
+      <p class="form-note">Ještě nemáte účet? <a href="index.php?action=registration">Registrace</a></p>
+    </form>
+  </div>
+</div>
+<?php require __DIR__ . '/htmlfooter.php';
