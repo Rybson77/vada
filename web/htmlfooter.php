@@ -7,6 +7,7 @@ $conn = null;?>
       <p>&copy; <?= date('Y') ?> Moje Půjčovna Filmů. Všechna práva vyhrazena.</p>
     </div>
   </footer>
+  <script src="./scripts/headresize.js"defer></script>
 </body>
 </html>
 

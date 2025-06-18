@@ -1,5 +1,7 @@
 <?php
 // index.php – front controller
+// Fyzická cesta na disku (pro require/include)
+
 
 // 1) Připojíme DB + session + CSRF
 require_once __DIR__ . '/config.php';
@@ -58,6 +60,14 @@ switch ($action) {
     } else {
       header('Location: index.php?action=dashboard');
       exit;
+    }
+    break;
+
+    case 'pay':
+    if ($method === 'POST') {
+      require __DIR__ . '/pay-bckend.php';
+    } else {
+      require __DIR__ . '/pay-bckend.php';
     }
     break;
 

@@ -34,6 +34,9 @@ require __DIR__ . '/htmlhead.php';
       <thead>
         <tr>
           <th>ID zápůjčky</th>
+      <?php if ($userRole==='admin'): ?>
+        <th>Uživatel</th>
+      <?php endif; ?>
           <th>Film</th>
           <th>Kopie filmu</th>
           <th>Datum výpůjčky</th>
@@ -63,7 +66,10 @@ require __DIR__ . '/htmlhead.php';
           );
         ?>
         <tr class="status-<?= htmlspecialchars($cls) ?>">
-          <td><?= $r['id'] ?></td>
+        <td><?= $r['id'] ?></td>
+        <?php if ($userRole==='admin'): ?>
+        <td><?= htmlspecialchars($r['user_login']) ?></td>
+        <?php endif; ?>
           <td><?= htmlspecialchars($r['title']) ?></td>
           <td><?= htmlspecialchars($r['copy_number']) ?></td>
           <td><?= date('d.m.Y', strtotime($r['rental_date'])) ?></td>

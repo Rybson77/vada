@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . 'config.php';
+require_once __DIR__ . '/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // 1) Zjistíme, kterou výpůjčku platíme
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     // 5) Vykreslíme formulář
     $title = 'Platba výpůjčky';
-    include __DIR__ . 'htmlhead.php';
+    include __DIR__ . '/htmlhead.php';
     echo '<link rel="stylesheet" href="./styles/auth.css">';
     echo '<div class="container auth-page"><div class="auth-card">';
     echo "<h2>{$title} #{$rentalId}</h2>";
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo "<p>Částka již byla plně uhrazena.</p>";
     } else {
         echo "<p>Částka k úhradě: <strong>{$due} Kč</strong></p>";
-        echo '<form method="post" action="pay-backend.php">';
+        echo '<form method="post" action="pay-bckend.php">';
         echo '<input type="hidden" name="csrf_token" value="' 
              . htmlspecialchars($_SESSION['csrf_token']) . '">';
         echo "<input type='hidden' name='rental_id' value='{$rentalId}'>";
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 
     echo '</div></div>';
-    include __DIR__ . 'htmlfooter.php';
+    include __DIR__ . '/htmlfooter.php';
     exit;
 }
 
@@ -69,7 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       empty($_POST['csrf_token'])
       || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])
     ) {
-        die('Neplatný CSRF token.');
+        $error='Neplatný CSRF token.';
+        exit;
     }
 
     $rentalId = (int)($_POST['rental_id'] ?? 0);

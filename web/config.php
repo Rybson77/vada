@@ -1,6 +1,5 @@
 <?php
 
-
 declare(strict_types=1);
 date_default_timezone_set('Europe/Prague');
 
@@ -13,6 +12,13 @@ define('DB_PASS', '');
 
 define('PASSWORD_PEPPER', 'F3ar_0f_7he_d4rk');
 
+set_include_path(
+    get_include_path()
+  . PATH_SEPARATOR . __DIR__ . '/src'
+  . PATH_SEPARATOR . __DIR__ . '/backend'
+  . PATH_SEPARATOR . __DIR__ . '/templates'
+  . PATH_SEPARATOR . __DIR__ . '/web'
+);
 
 try {
     $dsn = sprintf(

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . 'config.php';
+require_once __DIR__ . '/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: index.php?action=dashboard');
@@ -11,7 +11,8 @@ if (
   empty($_POST['csrf_token'])
   || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])
 ) {
-    die('Neplatný CSRF token.');
+    $error='Neplatný CSRF token';
+    exit;
 }
 
 $rentalId = (int)($_POST['rental_id'] ?? 0);
@@ -46,12 +47,12 @@ $paid = (float)$stmt2->fetchColumn();
 // 4) Pokud musí doplatit, pošleme ho na pay-backend
 if ($paid < $actualFee) {
     $due = $actualFee - $paid;
-    header("Location: pay-backend.php?rental_id={$rentalId}&due={$due}");
+    header("Location: pay-bckend.php?rental_id={$rentalId}&due={$due}");
     exit;
 }
 
 // 5) Upravíme záznam ve `rentals` a uvolníme kopii
-$lateFee = 0; // případně logika pro poplatek za zpoždění
+$lateFee = 0; 
 
 $conn->beginTransaction();
 $conn->prepare("
