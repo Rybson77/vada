@@ -99,3 +99,44 @@ body > .container { flex: 1; }
   .auth-card .btn-primary:hover {
     color: #24292e;
 }
+
+@media only screen and (max-width: 510px) {
+  .auth-card {
+    text-align: center;
+    margin: 1.5rem auto;
+    padding: 1.25rem;
+  }
+
+  .auth-card h2 {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  .form-group input {
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .btn, .btn-primary {
+    width: 100%;
+    margin-left: 0;
+    padding: 0.6rem;
+    font-size: 1rem;
+  }
+
+  .form-note {
+    text-align: center;
+    font-size: 0.85rem;
+    margin-top: 0.8rem;
+  }
+
+}
+
+

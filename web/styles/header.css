@@ -23,7 +23,6 @@ body {
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 1000;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   padding: 0; /* odstraněno vertikální odsazení */
 }
@@ -113,3 +112,41 @@ body {
   margin-right: 0.75rem;
   font-style: italic;
 }
+
+
+@media only screen and (max-width: 510px) {
+  .site-header {
+    position: absolute;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .header-inner {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .auth-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1em;
+  }
+
+  .auth-links .btn {
+    margin-left: 0;
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+  }
+}
+
